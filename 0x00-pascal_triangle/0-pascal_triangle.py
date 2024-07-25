@@ -13,6 +13,6 @@ def pascal_triangle(n):
             for j in range(1, i + 1):
                 level.append(x)
                 x = x * (i - j) // j
-            result .append(level)
+            result.append(level)
 
     return result
