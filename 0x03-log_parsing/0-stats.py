@@ -10,6 +10,7 @@ def compute_metrics(stat_dict, filesize):
         if value != 0:
             print("{}: {}".format(key, value))
 
+
 filesize = 0
 stat_code = 0
 counter = 0
@@ -27,7 +28,7 @@ stat_dict = {
 try:
     for line in sys.stdin:
         par_line = line.split()
-        par_line  = par_line[::-1]
+        par_line = par_line[::-1]
 
         if len(par_line) > 2:
             counter += 1
@@ -35,9 +36,12 @@ try:
                 filesize += int(par_line[0])
                 stat_code = par_line[1]
 
-                if counter == 10:
-                    compute_metrics(stat_dict, file_size)
-                    counter = 0
+                if stat_code in stat_dict.keys():
+                    stat_dict[stat_code] += 1
+
+            if counter == 10:
+                compute_metrics(stat_dict, filesize)
+                counter = 0
 
 finally:
     compute_metrics(stat_dict, filesize)
