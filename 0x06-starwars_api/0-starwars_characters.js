@@ -7,7 +7,6 @@ req('https://swapi-api.alx-tools.com/api/films/' + process.argv[2], function(err
   const actors = JSON.parse(body).characters;
   exactOrder(actors, 0);
 });
-
 const exactOrder = (actors, p) => {
   if (p === actors.length) return;
   req(actors[p], function(error, res, body) {
