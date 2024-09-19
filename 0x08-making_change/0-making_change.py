@@ -7,7 +7,7 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
     if not coins or coins is None:
-        return 0
+        return -1
 
     change = 0
     coins = sorted(coins)[::-1]
