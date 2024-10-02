@@ -3,7 +3,7 @@
 
 
 def isWinner(x, nums):
-    """Evaluates the winner of a prime number game session over `x` rounds."""
+    """Determines the winner of a prime game session over `x` rounds."""
     if x < 1 or not nums:
         return None
 
@@ -13,6 +13,7 @@ def isWinner(x, nums):
     max_num = max(nums)
     is_prime = [True] * (max_num + 1)
     is_prime[0] = False
+    is_prime[1] = False  # 1 is not a prime number
 
     for i in range(2, max_num + 1):
         if is_prime[i]:
@@ -22,12 +23,12 @@ def isWinner(x, nums):
     # Loop through each round and count prime numbers up to each value in nums
     for round_num in range(x):
         current_num = nums[round_num]
-        prime_count = sum(is_prime[0:current_num + 1])
+        prime_count = sum(is_prime[:current_num + 1])
 
-        if prime_count % 2 == 0:
-            ben_score += 1
+        if prime_count % 2 == 1:
+            maria_score += 1  # Maria wins if the count is odd
         else:
-            maria_score += 1
+            ben_score += 1  # Ben wins if the count is even
 
     if maria_score > ben_score:
         return 'Maria'
